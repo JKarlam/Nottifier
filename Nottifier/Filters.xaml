@@ -1,0 +1,28 @@
+﻿<Window x:Class="Nottifier.Filters"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Nottifier.Properties"
+        mc:Ignorable="d"
+        Title="{Binding Source={x:Static p:Resources.filters},StringFormat=Nottifier {0}}" WindowStartupLocation="Manual" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight" Width="220" Icon="Resources/icon.ico">
+    <Grid>
+        <Label x:Name="labelName" Content="{x:Static p:Resources.filtersForText}" HorizontalAlignment="Center" Margin="10,5,10,0" VerticalAlignment="Top" Width="172" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" FontSize="14"/>
+        <TextBox x:Name="textBoxNewFilter" HorizontalAlignment="Left" Height="20" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169"/>
+        <Button x:Name="buttonAddFilter" Content="+" HorizontalAlignment="Left" Margin="184,26,0,0" VerticalAlignment="Top" Width="20" Padding="0" Height="20" Click="buttonAddFilter_Click"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Margin="10,51,0,10" VerticalAlignment="Top" Height="100" Width="194">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Button x:Name="buttonRemoveFilter" HorizontalAlignment="Left" VerticalAlignment="Center" Width="15" Height="15" IsHitTestVisible="True" Click="buttonRemoveFilter_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/icon_close.png"/>
+                            </Button.Background>
+                        </Button>
+                        <Label x:Name="label" Content="{Binding}" Width="100" HorizontalAlignment="Left" Margin="20,0,-20,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>

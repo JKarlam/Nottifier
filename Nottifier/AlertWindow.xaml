@@ -1,0 +1,23 @@
+﻿<Window x:Name="aWindow" x:Class="Nottifier.AlertWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nottifier"
+        mc:Ignorable="d"
+        Title="Nottifier" Width="400" UseLayoutRounding="False" BorderThickness="1" WindowStartupLocation="Manual" Topmost="True" ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False" VerticalAlignment="Top" MouseEnter="aWindow_MouseEnter" Closing="aWindow_Closing" MinHeight="120" Icon="Resources/icon.ico" SizeToContent="Height" ShowActivated="False">
+    <Grid VerticalAlignment="Top">
+        <Grid x:Name="dragGrid" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="400" MouseLeftButtonDown="dragGrid_MouseLeftButtonDown" Background="#FFC8C8C8"/>
+        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="380,12,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="button_Click" BorderThickness="0">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/icon_close.png"/>
+            </Button.Background>
+        </Button>
+
+        <Image x:Name="userIcon" HorizontalAlignment="Left" Height="30" Margin="10,12,0,0" VerticalAlignment="Top" Width="30" MouseLeftButtonUp="userIcon_MouseLeftButtonUp" Cursor="Hand"/>
+        <Label x:Name="userName" Content="" HorizontalAlignment="Left" Margin="45,12,0,0" VerticalAlignment="Top" Height="30" Padding="5,0" FontSize="20" MouseLeftButtonUp="userName_MouseLeftButtonUp" Cursor="Hand"/>
+        <TextBlock x:Name="messageTextBlock" HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="378" FontSize="14" Cursor="Hand" MouseLeftButtonUp="messageTextBlock_MouseLeftButtonUp" Height="0"/>
+        <Grid x:Name="xtraGrid" HorizontalAlignment="Left" Margin="10,50,0,10" VerticalAlignment="Top" Width="378"/>
+
+    </Grid>
+</Window>

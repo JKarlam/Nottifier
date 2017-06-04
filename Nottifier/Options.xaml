@@ -1,0 +1,15 @@
+﻿<Window x:Class="Nottifier.Options"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Nottifier.Properties"
+        mc:Ignorable="d"
+        Title="{Binding Source={x:Static p:Resources.options},StringFormat=Nottifier {0}}" Height="211.653" Width="228.814" WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize" SizeToContent="Height" Closing="Window_Closing" Icon="Resources/icon.ico">
+    <Grid>
+        <Button x:Name="buttonReset" Content="Reset all" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Click="buttonReset_Click"/>
+        <Button x:Name="buttonRemove" Content="Remove all" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Width="100" Click="buttonRemove_Click"/>
+        <Label x:Name="labelFadeTime" Content="Time to fade (ms)" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="128"/>
+        <TextBox x:Name="textBoxFadeTime" HorizontalAlignment="Left" Height="26" Margin="143,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" MaxLength="4" TextAlignment="Right" Padding="5" PreviewTextInput="textBoxFadeTime_PreviewTextInput"/>
+    </Grid>
+</Window>

@@ -1,0 +1,14 @@
+﻿<Window x:Class="Nottifier.DebugTools"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nottifier"
+        mc:Ignorable="d"
+        Title="DebugTools" Height="137.712" Width="189.831">
+    <Grid>
+        <Button x:Name="buttonRecibirTweetAncho" Content="Recibir tweet ancho" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="160" Click="buttonRecibirTweetAncho_Click" FontSize="14"/>
+        <Button x:Name="buttonRecibirTweetAlto" Content="Recibir tweet alto" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="160" Click="buttonRecibirTweetAlto_Click" FontSize="14"/>
+        <Button x:Name="buttonRecibirTweetVideo" Content="Recibir tweet con vídeo" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="160" Click="buttonRecibirTweetVideo_Click" FontSize="14"/>
+    </Grid>
+</Window>
