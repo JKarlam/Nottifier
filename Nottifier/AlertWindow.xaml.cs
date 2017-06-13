@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -15,7 +16,6 @@ namespace Nottifier
     public partial class AlertWindow : Window
     {
         private TweetReceivedEventArgs tea;
-        private bool hasExtras = false;
         private bool stopAutoClosing = false;
         private bool windowPositionMoved = false;
 
@@ -61,7 +61,7 @@ namespace Nottifier
                         float imageHeightWidthRelation = (float)medias[0].Sizes["medium"].Height / (float)medias[0].Sizes["medium"].Width;
                         xtraGrid.Height = xtraGrid.Width * imageHeightWidthRelation;
 
-                        ShowAlert();
+                        SetWindowParams();
                     }
                     else if (medias[0].MediaType.Contains("photo")) // Una imagen
                     {
@@ -77,14 +77,14 @@ namespace Nottifier
                         biExtraImage.DownloadCompleted += (sender, args) =>
                         {
                             i.Source = biExtraImage;
-                            ShowAlert();
+                            SetWindowParams();
                         };
                     }
                 }
                 else // Nada (solo texto)
                 {
                     Debug.WriteLine("El tweet NO contiene imagen ni vídeo");
-                    ShowAlert();
+                    SetWindowParams();
                 }
             }
         }
@@ -112,11 +112,14 @@ namespace Nottifier
             }
         }
 
-        //establece parámetros relacionados con la ventana
+        // Establece parámetros relacionados con la ventana
         private void SetWindowParams()
         {
+            this.Show();
+            double offset = Screen.PrimaryScreen.WorkingArea.Height - (ConfigManager.dic["alertWindowPositionY"] + aWindow.Height);
+
             aWindow.Left = ConfigManager.dic["alertWindowPositionX"];
-            aWindow.Top = ConfigManager.dic["alertWindowPositionY"] - (hasExtras? xtraGrid.Height : 0);
+            aWindow.Top = ConfigManager.dic["alertWindowPositionY"] + (offset < 0? offset : 0);
 
             string[] colors = DBHelper.GetColors(tea.Tweet.CreatedBy.ScreenName);
             aWindow.Background = (Brush)new BrushConverter().ConvertFromString(colors[0]);
@@ -128,12 +131,6 @@ namespace Nottifier
                 Thread.Sleep(ConfigManager.dic["timeForAlertToFade"]);
                 if(!stopAutoClosing) this.Dispatcher.Invoke(Close);
             })).Start();
-        }
-
-        private void ShowAlert()
-        {
-            SetWindowParams();
-            this.Show();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -171,7 +168,7 @@ namespace Nottifier
             {
                 Debug.WriteLine("La ventana se ha movido, reescribiendo config.ini");
                 ConfigManager.dic["alertWindowPositionX"] = (int)aWindow.Left;
-                ConfigManager.dic["alertWindowPositionY"] = (int)(aWindow.Top + xtraGrid.Height);
+                ConfigManager.dic["alertWindowPositionY"] = (int)aWindow.Top;
                 ConfigManager.WriteConfigFile();
             }
         }

@@ -12,8 +12,8 @@ namespace Nottifier
         public static Dictionary<string, int> dic = new Dictionary<string, int>()
         {
             { "timeForAlertToFade", 6000 },
-            { "alertWindowPositionX", Screen.PrimaryScreen.Bounds.Width - 400 },
-            { "alertWindowPositionY", Screen.PrimaryScreen.Bounds.Height - 200 }
+            { "alertWindowPositionX", Screen.PrimaryScreen.WorkingArea.Width - 400 },
+            { "alertWindowPositionY", Screen.PrimaryScreen.WorkingArea.Height - 200 }
         };
 
         public static void Start()

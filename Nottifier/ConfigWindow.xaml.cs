@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Tweetinvi;
@@ -61,33 +60,6 @@ namespace Nottifier
                 this.Hide();
 
             base.OnStateChanged(e);
-        }
-
-        //TODO exportar los filtros de bd a archivo
-        private bool ExportConfigToFile()
-        {
-            throw new NotImplementedException();
-        }
-
-        //TODO importar los filtros de archivo a bd
-        private bool ImportFiltersFromFile(string importingFilePath)
-        {
-            try
-            {
-                FileStream fs = new FileStream(importingFilePath, FileMode.Open);
-                StreamReader sr = new StreamReader(fs);
-                while(!sr.EndOfStream)
-                {
-                    string[] line = sr.ReadLine().Split('=');
-                    //
-                }
-                return true;
-            }
-            catch (IOException e)
-            {
-                Debug.WriteLine(e.Message);
-                return false;
-            }
         }
 
         // Abrir flujo de tweets
