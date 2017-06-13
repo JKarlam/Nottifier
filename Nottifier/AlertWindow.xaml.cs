@@ -46,16 +46,15 @@ namespace Nottifier
 
                 if (medias.Count != 0)
                 {
-                    hasExtras = true;
                     if (medias[0].MediaType.Contains("animated_gif")) // Video
                     {
                         Debug.WriteLine("El tweet contiene un vídeo");
-                        MediaElement me = new MediaElement();
-                        // MediaElement no soporta https, en este caso cambiar la url a http funciona (aunque en el navegador cambie de nuevo a https)
-                        me.Source = new Uri("http" + medias[0].VideoDetails.Variants[0].URL.Substring(5), UriKind.Absolute);
-                        me.LoadedBehavior = MediaState.Play;
-
-                        me.Width = xtraGrid.Width;
+                        MediaElement me = new MediaElement()
+                        {
+                            Source = new Uri("http" + medias[0].VideoDetails.Variants[0].URL.Substring(5), UriKind.Absolute),
+                            LoadedBehavior = MediaState.Play,
+                            Width = xtraGrid.Width
+                        };
                         xtraGrid.Children.Add(me);
                         xtraGrid.Margin = new Thickness(10, 50 + messageTextBlock.Height, 0, 10);
                         float imageHeightWidthRelation = (float)medias[0].Sizes["medium"].Height / (float)medias[0].Sizes["medium"].Width;
@@ -67,8 +66,10 @@ namespace Nottifier
                     {
                         Debug.WriteLine("El tweet contiene una imagen");
                         BitmapImage biExtraImage = new BitmapImage(new Uri(medias[0].MediaURL));
-                        Image i = new Image();
-                        i.Width = xtraGrid.Width;
+                        Image i = new Image()
+                        {
+                            Width = xtraGrid.Width
+                        };
                         xtraGrid.Children.Add(i);
                         xtraGrid.Margin = new Thickness(10, 50 + messageTextBlock.Height, 0, 10);
                         float imageHeightWidthRelation = (float)medias[0].Sizes["medium"].Height / (float)medias[0].Sizes["medium"].Width;

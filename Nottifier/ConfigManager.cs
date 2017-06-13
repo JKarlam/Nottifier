@@ -40,18 +40,18 @@ namespace Nottifier
                     sw.WriteLine(key + " = " + dic[key]);
                     Debug.WriteLine(key + " = " + dic[key]);
                 }
-                sw.Close();
-                fs.Close();
                 Debug.WriteLine("Éxito al crear el archivo de configuración");
                 return true;
             }
             catch (IOException e)
             {
-                if (sw != null) sw.Close();
-                if (fs != null) fs.Close();
                 Debug.WriteLine(e.Message);
                 Debug.WriteLine("Fallo al crear el archivo de configuración");
                 return false;
+            }
+            finally
+            {
+                if (fs != null) fs.Close();
             }
         }
         
@@ -78,10 +78,12 @@ namespace Nottifier
             }
             catch (IOException e)
             {
-                if(sr != null) sr.Close();
-                if (fs != null) fs.Close();
                 Debug.WriteLine(e.Message);
                 return false;
+            }
+            finally
+            {
+                if (fs != null) fs.Close();
             }
         }
 
